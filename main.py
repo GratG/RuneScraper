@@ -6,7 +6,7 @@ from alive import keep_alive
 
 
 
-myGroup = scraper.ironmanGroup()
+myGroup = scraper.myGroup()
 print(myGroup)
 client = discord.Client()
 
@@ -23,7 +23,12 @@ async def on_message(message):
     await message.channel.send('Hello!')
 
   if message.content.startswith('!rank'):
-    await message.channel.send(myGroup)
+    await message.channel.send(scraper.printGroup(scraper.myGroup()))
+
+  if message.content.startswith('!search'):
+    s = (message.content).split()
+    print(int(s[1]))
+    await message.channel.send(scraper.printGroup(scraper.search(int(s[1]))))
     
 keep_alive()
 
